@@ -24,7 +24,7 @@ public class NoteController {
     }
         @GetMapping("/get")
         public ResponseEntity<List<NoteModel>> getNote () {
-            return new ResponseEntity<List<NoteModel>>(noteService.getAllUsers(), HttpStatus.OK);
+            return new ResponseEntity<List<NoteModel>>(noteService.getAllNotes(), HttpStatus.OK);
         }
 
         @PutMapping("/put/{id}")
@@ -38,8 +38,8 @@ public class NoteController {
 
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<String> deleteNote (@PathVariable String id){
-            noteService.deleteUser(id);
-            return new ResponseEntity<>("This Userinfo is deleted with the id:" + id, HttpStatus.NO_CONTENT);
+            String message = noteService.deleteNote(id);
+            return ResponseEntity.ok().body(message);
         }
 
 
@@ -49,4 +49,4 @@ public class NoteController {
  *         User savedUser = userService.addUser(user);
  *         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
  *     }*/
-}
+
