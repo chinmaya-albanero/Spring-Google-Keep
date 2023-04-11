@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NoteRepository extends MongoRepository<NoteModel,String> {
-
+    NoteModel findBytitle(String title);
 }

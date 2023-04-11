@@ -1,3 +1,5 @@
+package com.example.demo.Service;
+
 import com.example.demo.Model.NoteModel;
 import com.example.demo.Repository.NoteRepository;
 import org.slf4j.Logger;
@@ -10,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Service
 public class NoteService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NoteService.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(NoteService.class);
 
     @Autowired
     NoteRepository noteRepository;
@@ -29,6 +31,13 @@ public class NoteService {
         return allNote;
     }
 
+    public NoteModel getNoteByTitle(String title) {
+        LOGGER.debug("Fecthing note from database");
+        NoteModel note =   noteRepository.findBytitle(title);
+              LOGGER.debug("Returning note:", note);
+              return  note;
+
+    }
     public NoteModel updateNote(String id, NoteModel noteModel) {
         LOGGER.debug("Updating note with ID: {}", id);
         NoteModel note = noteRepository.findById(id).orElse(null);

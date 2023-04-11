@@ -6,13 +6,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
+//5caed221-360f-4033-bfba-f8be25c788d2
 @Data
 @Document(collection = "google-keep")
 public class NoteModel {
     @Id
     private String id;
-
     private  String title;
     private String description;
 
